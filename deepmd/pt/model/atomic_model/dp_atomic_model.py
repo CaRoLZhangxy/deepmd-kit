@@ -94,7 +94,7 @@ class DPAtomicModel(BaseAtomicModel):
 
         """
         return self.descriptor.mixed_types()
-    
+    @torch.jit.export
     def has_message_passing(self) -> bool:
         """
         If true, the model has a structure of message-passing network, which requires communication op in multi-process inference.

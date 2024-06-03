@@ -303,14 +303,13 @@ def train(FLAGS):
 
 def freeze(FLAGS):
     model = torch.jit.script(inference.Tester(FLAGS.model, head=FLAGS.head).model)
-    if model.has_message_passing() == True:
-        extra_files = {"has_message_passing": "True"}
-    else:
-        extra_files = {"has_message_passing": "False"}
+    # if model.has_message_passing() == True:
+    #     extra_files = {"has_message_passing": "True"}
+    # else:
+    #     extra_files = {"has_message_passing": "False"}
     torch.jit.save(
         model,
         FLAGS.output,
-        extra_files,
     )
 
 

@@ -59,7 +59,8 @@ void DeepPotPT::init(const std::string& model,
   }
   std::unordered_map<std::string, std::string> metadata = {{"type", ""}};
   module = torch::jit::load(model, device, metadata);
-  if (metadata["has_message_passing"] == "True") {
+  auto has_message_passing = module.run_method("has_massage_passing").toBool();
+  if (has_message_passing) {
     do_message_passing = 1;
   } else {
     do_message_passing = 0;

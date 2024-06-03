@@ -56,7 +56,3 @@ class BaseModel(torch.nn.Module, make_base_model()):
     def get_ntypes(self):
         """Returns the number of element types."""
         return len(self.get_type_map())
-    @torch.jit.export
-    def has_message_passing(self):
-        """Returns the message_passing atrribute of model."""
-        return self.has_message_passing()
