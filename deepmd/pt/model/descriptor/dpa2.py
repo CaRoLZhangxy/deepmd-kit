@@ -283,17 +283,25 @@ class DescrptDPA2(BaseDescriptor, torch.nn.Module):
         return self.repformers.dim_emb
 
     def mixed_types(self) -> bool:
-        """If true, the discriptor
+        """If true, the descriptor
         1. assumes total number of atoms aligned across frames;
         2. requires a neighbor list that does not distinguish different atomic types.
 
-        If false, the discriptor
+        If false, the descriptor
         1. assumes total number of atoms of each atom type aligned across frames;
         2. requires a neighbor list that distinguishes different atomic types.
 
         """
         return True
+    
+    def has_message_passing(self) -> bool:
+        """
+        If true, the descriptor has a structure of message-passing network, which requires communication op in multi-process inference.
 
+        If false, the op above is not needed.
+        """
+        return True
+    
     def get_env_protection(self) -> float:
         """Returns the protection of building environment matrix."""
         # the env_protection of repinit is the same as that of the repformer

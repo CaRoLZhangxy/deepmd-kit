@@ -530,6 +530,13 @@ def make_model(T_AtomicModel: Type[BaseAtomicModel]):
 
             """
             return self.atomic_model.mixed_types()
+        def has_message_passing(self) -> bool:
+            """
+            If true, the model has a structure of message-passing network, which requires communication op in multi-process inference.
+
+            If false, the op above is not needed.
+            """
+            return self.atomic_model.has_message_passing()
 
         def forward(
             self,

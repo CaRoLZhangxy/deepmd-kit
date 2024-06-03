@@ -366,7 +366,13 @@ class DescrptBlockRepformers(DescriptorBlock):
 
         """
         return True
+    def has_message_passing(self) -> bool:
+        """
+        If true, the descriptor has a structure of message-passing network, which requires communication op in multi-process inference.
 
+        If false, the op above is not needed.
+        """
+        return True
     def get_env_protection(self) -> float:
         """Returns the protection of building environment matrix."""
         return self.env_protection

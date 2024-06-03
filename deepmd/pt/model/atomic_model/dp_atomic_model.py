@@ -94,6 +94,14 @@ class DPAtomicModel(BaseAtomicModel):
 
         """
         return self.descriptor.mixed_types()
+    
+    def has_message_passing(self) -> bool:
+        """
+        If true, the model has a structure of message-passing network, which requires communication op in multi-process inference.
+
+        If false, the op above is not needed.
+        """
+        return self.descriptor.has_message_passing()
 
     def serialize(self) -> dict:
         dd = BaseAtomicModel.serialize(self)
